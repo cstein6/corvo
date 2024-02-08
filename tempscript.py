@@ -3,6 +3,9 @@ import os
 import subprocess
 import time
 
+#clears out temp files in selected folders, runs an advanced options disk clean, and flushes dns resolver cache with 0 interaction.. except;
+
+
 def cleartemp(temp):
     for folder in temp:
         try:
@@ -24,20 +27,13 @@ temp = [
     r"C:\Users\Administrator\AppData\Local\Temp",
     r"C:\Windows\Temp",
     r"C:\Windows\Prefetch",
-    r"C:\Call of Duty\_retail_\xpak_cache",
-    r"C:\Call of Duty\_retail_\telescopeCache",
+    r"C:\CoD\Call of Duty\_retail_\xpak_cache",
+    r"C:\CoD\Call of Duty\_retail_\telescopeCache",
 #optional
-    #r"C:\Call of Duty\_retail_\telescopeStorage"
-    #r"C:\Call of Duty\_retail_\cod23\shadercache" #shaders(rarely necessary)
+    #r"C:\CoD\Call of Duty\_retail_\telescopeStorage"
+    #r"C:\CoD\Call of Duty\_retail_\cod23\shadercache" #shaders(rarely necessary)
 ]
-
-#Disk cleanup (for first time users, open cmd prompt as admin and run the following command;
-#  cleanmgr.exe /sageset:99
-#select everything you would like to routinely clean, run the command, options will persist.
 
 cleartemp(temp)
 
-def cleanup():
-    subprocess.run(["cleanmgr.exe", "/sagerun:99"], shell=True)
-
-cleanup()
+subprocess.run(["ipconfig", "/flushdns"])
