@@ -1,27 +1,27 @@
 import shutil
 import os
 
-def cleartemp(temp_folders):
-    for folder in temp_folders:
+def cleartemp(folders):
+    for folder in folders:
         try:
-            folder_contents = os.listdir(folder)
-            for item in folder_contents:
-                item_path = os.path.join(folder, item)
+            contents = os.listdir(folder)
+            for item in contents:
+                path = os.path.join(folder, item)
                 try:
-                    if os.path.isfile(item_path):
-                        os.unlink(item_path)
-                    elif os.path.isdir(item_path):
-                        shutil.rmtree(item_path)
+                    if os.path.isfile(path):
+                        os.unlink(path)
+                    elif os.path.isdir(path):
+                        shutil.rmtree(path)
                 except Exception:
                     pass
         except Exception:
             pass
 
-# Replace with your list of temporary folder paths
-temp_folders = [
-    r"C:\Users\Administrator\AppData\Local\Temp",
+# Replace <YourUserName> with your Windows User and add/replace this list with your list of temporary folder paths.
+folders = [
+    r"C:\Users\<YourUserName>\AppData\Local\Temp",
     r"C:\Windows\Temp",
     r"C:\Windows\Prefetch"
 ]
 
-cleartemp(temp_folders)
+cleartemp(folders)
